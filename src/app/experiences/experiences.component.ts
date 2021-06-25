@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IJob } from './job';
 
 @Component({
   selector: 'app-experiences',
@@ -14,7 +15,7 @@ export class ExperiencesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  jobs : any[] = [
+  jobs : IJob[] = [
     {
       "title": "Lead Developer",
       "time": "2019 - Present",
