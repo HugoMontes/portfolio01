@@ -1,33 +1,18 @@
 import { Injectable } from '@angular/core';
 import { IJob } from '../experiences/job';
+import { HttpClient, HttpResponse} from '@angular/common/http'  
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobService {
 
-  constructor() { }
+  private _url: string ='assets/json/jobs.json'
 
-  getJobs(): IJob[] {
-    return [
-      {
-        "title": "Lead Developer",
-        "time": "2019 - Present",
-        "company": "Startup Hubs, San Francisco",
-        "details": "Describe your role here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo."
-      },
-      {
-        "title": "Senior Software Engineer",
-        "time": "2018 - 2019",
-        "company": "Google, London",
-        "details": "Describe your role here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
-      },
-      {
-        "title": "UI Developer",
-        "time": "2016 - 2018",
-        "company": "Amazon, London",
-        "details": "Describe your role here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
-      }
-    ];
+  constructor(private _http: HttpClient) { }
+
+  getJobs(): Observable<IJob[]> {
+    return this._http.get<IJob[]>(this._url);
   }
 }
